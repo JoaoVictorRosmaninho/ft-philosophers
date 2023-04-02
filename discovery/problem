@@ -1,0 +1,64 @@
+
+## Problema 
+  
+
+## Introdução 
+   Esse projeto consiste de utilizar threads para simular filsófos, cada filosofo possui rotinas como comer, dormir ou pensar.
+   Para efetuar essas rotinas, haverão conflitos entre os filósofos por recursos necessários para executa-lás. Um exemplo disso
+   é a utilização do Garfo.
+
+## Levantamento 
+   Será necessário o uso de 5 argumetos de linha de comando, sendo o último opcional, são esses:
+    #1 => number_of_philosofers: O número de filósofo da simulação e também o numero de garfos.
+    #2 => time_to_die: Se um filósofo não comer time_to_die milisegundos desde a última refeição ele morre
+    #3 => time_to_eat: o tempo que um filósofo demora para comer, durante esse tempo ele deve utilizar dois garfos 
+    #4 => time_to_sleep: o tempo que um filósofo utilizará para dormir
+    #5 => number_of_times_each_philosopher_must_eat: Se todos os filsófos tiverem comido ao menos o valor dessa variável. A simulação Para.
+          Se não especificado, a simulação para quando todos morrerem.
+  
+    Cada Filósofo têm um id que vária entre 1 e number_of_philosofers. Esse número será utilizado para definir a posição dos filósofos ao
+    entorno da mesa. Por exemplo, o filósofo N sentará entre o filósofo identificado pelo id N - 1 e o filósofo identificado pelo id N + 1
+    O filósofo 1 senta ao lado do filósofo N
+
+    # Demonstração 
+      - Existem dois filsófos na mesa 
+        - Se um filosofo estiver comendo, ele utiliza dois garfos e mesmo que o outro esteja com fome ele não pode comer 
+        - Quando ele termina de comer, ele coloca os garfos de volta na mesa e vai dormir, Se o outro filósofo estiver com fome, ele pode comer.
+          Uma vez acordado ele começa a pensar 
+        - Percebe-se aqui que haverão conflitos por garfos, uma vez que seria necessário 2 garfos por filósofo para nao ter conflitos, porém só
+          têm um. 
+        -  
+
+    # Como iniciar essa roda de filsófos e com os paramêtros passados ?
+      - Existe um problema, em que, se no inicio, os filósofos iniciarem fazendo a mesma ação, irão acabar esperando por garfos
+        de tal forma que pode ocorrer um problema, conforme os seguintes cenários
+          # Cenário 1: considerando dois filósofos
+              - se o time_to_eat < time_to_die, um filosofo terminará de comer antes do outro e esse outro não morrerá. Um ponto interessante
+                é que, como o primeiro iniciou o ato de dormir antes do segundo, temos o primeiro assíncronismo no comportamento dos filosofos
+              
+              - se o time_to_eat > time_to_die o segundo vai morrer de fome e a simulação vai acabar aqui
+
+          # Cenário 1: considerando dois filosodos 
+        
+
+
+    ### Filósofos e os garfos
+      Cada filósofo utiliza dois garfos, um para comer e um para se servir, existe tantos garfos quanto filsófos.
+
+    ### Output
+      
+    ### Critério de Parada 
+      - A simulação para quando um dos filósofos morre de fome
+
+## Desenvolvimento
+
+
+
+## Conclusão
+
+
+## Content
+  # threads 
+    - https://www.youtube.com/watch?v=d9s_d28yJq0&list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2
+    - https://youtu.be/uA8X5zNOGw8?list=PL9IEJIKnBJjFZxuqyJ9JqVYmuFZHr7CFM
+
