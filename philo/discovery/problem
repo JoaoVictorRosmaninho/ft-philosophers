@@ -31,14 +31,22 @@
 
     # Como iniciar essa roda de filsófos e com os paramêtros passados ?
       - Existe um problema, em que, se no inicio, os filósofos iniciarem fazendo a mesma ação, irão acabar esperando por garfos
-        de tal forma que pode ocorrer um problema, conforme os seguintes cenários
+        de tal forma que pode ocorrer um problema, conforme os seguintes cenários ( essa afirmação está errada, os parametros irão definir
+        assíncronismo)
           # Cenário 1: considerando dois filósofos
+              
+              ### importante
               - se o time_to_eat < time_to_die, um filosofo terminará de comer antes do outro e esse outro não morrerá. Um ponto interessante
                 é que, como o primeiro iniciou o ato de dormir antes do segundo, temos o primeiro assíncronismo no comportamento dos filosofos
               
+              
               - se o time_to_eat > time_to_die o segundo vai morrer de fome e a simulação vai acabar aqui
 
-          # Cenário 1: considerando dois filosodos 
+          # Cenário 2: considerando N filosofos 
+              - se o time_to_eat < time_to_die porém há muitos filosofos para comer, quem comerá ?
+                  - pode-se resolver o problema de concorrência utilizando filas normais ou filas prioritárias onde quem iria morrer
+                    primeiro, fica na frente da fila 
+                  - no pior caso, os últimos filosos irão começar a morrer 
         
 
 
