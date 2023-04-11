@@ -58,6 +58,11 @@
     ### Critério de Parada 
       - A simulação para quando um dos filósofos morre de fome
 
+
+    ### threads in C 
+      - Para se criar threads em C se utiliza a função pthread_create(). 
+      - Essa função possui 4 Parametros 
+
 ## Desenvolvimento
 
 
