@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 21:20:33 by jv                #+#    #+#             */
-/*   Updated: 2023/04/10 22:37:57 by jv               ###   ########.fr       */
+/*   Updated: 2023/04/16 12:08:33 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct {
 	int time_to_eat;
 	int time_to_sleep;
 	int must_eat;
-	byte *forks;
+	pthread_mutex_t *forks;
 } t_philo_ctx;
 
 typedef struct {

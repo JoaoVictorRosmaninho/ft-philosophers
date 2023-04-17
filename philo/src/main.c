@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 22:18:36 by jv                #+#    #+#             */
-/*   Updated: 2023/04/10 22:49:38 by jv               ###   ########.fr       */
+/*   Updated: 2023/04/16 21:32:08 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void philo_free(t_philo *philos)
 {
 	if (philos)
 	{
-		free(philos->ctx->forks);
-		free(philos->ctx);
-		free(philos);
+		free(philos[0].ctx->forks);
+		free(philos[0].ctx);
+		//free(philos);
 	}
 }
 
@@ -44,7 +44,7 @@ t_philo	*build_philos(int argc, char *argv[])
 		free(ctx);
 		return (NULL);
 	}
-	forks 	= (byte *) calloc(ctx->number_of_philosofers, sizeof(byte));
+	forks 	= (pthread_mutex_t *) calloc(ctx->number_of_philosofers, sizeof(pthread_mutex_t));
 	if (!forks)
 	{
 		free(philos);
@@ -61,6 +61,14 @@ t_philo	*build_philos(int argc, char *argv[])
 		philos[i].time_until_die	 		= ctx->time_to_die;
 		philos[i].times_have_eat 			= 0;
 		philos[i].ctx						= ctx;
+		if (pthread_mutex_init((forks + i), NULL) != 0)
+		{
+			// Error 
+			free(philos);
+			free(ctx);
+			free(forks);
+			return NULL;
+		}
 	}
 	
 	return (philos);
@@ -88,31 +96,37 @@ byte philo_get_right_fork(t_philo *self)
 	return (self->ctx->number_of_philosofers + 1);
 }
 
-e_fork_state philo_get_forks(t_philo *self)
+int philo_get_forks(t_philo *self)
 {
 
 	byte left;
 	byte right;
-	byte *forks;
+	pthread_mutex_t *forks;
+	int time_spend;
 
 	forks = self->ctx->forks;
+	time_spend = 0;
 	left  = philo_get_left_fork(self);
 	right = philo_get_right_fork(self);
 
-	if (forks[left])
-		return (LEFT_OCCUPED);
-	if (forks[right])
-		return (RIGHT_OCCUPED);
-	forks[left] = 1;
-	forks[right] = 1;
+	/* Usar a gettimeofday aqui */	
+	pthread_mutex_lock(forks + left);
+	pthread_mutex_lock(forks + right);
 
-	return (AVALIABLE);
+	/* Usar a gettimeofday, aqui  e pegar a diferença */
+	return (time_spend);
 }
 
 void philo_put_forks(t_philo *self)
 {
-	self->ctx->forks[philo_get_left_fork(self)] = 0;
-	self->ctx->forks[philo_get_right_fork(self)] = 0;
+	byte left_fork;
+	byte right_fork;
+
+	left_fork  = philo_get_left_fork(self);
+	right_fork = philo_get_right_fork(self);
+
+	pthread_mutex_unlock(self->ctx->forks + left_fork);
+	pthread_mutex_unlock(self->ctx->forks + right_fork);
 }
 
 
@@ -131,8 +145,13 @@ void philo_eat(t_philo *self)
 	/*
 		# ele tem que pegar seu garfo esquerdo e seu direito
 	*/
-	if (philo_get_forks(self) != AVALIABLE)
+	if (philo_get_forks(self) != AVALIABLE) {
 		printf("Filósofo: %u, não conseguiu pegar os garfos, esperando\n", (unsigned int) self->position);
+		/* ter uma fila para cada garfo, onde quando for devolvido a mesa, o proximo irá pega-lá */
+		/* A fila nao vai resolver pois, podem tentar pegar o mesmo garfo ao mesmo tempo */
+		/* Aparentemente fila so funciona pra quando um recurso é demandado por muitos */
+		
+	}
 	else
 	{
 		printf("Filósofo: %u, conseguiu pegar os garfos\n", (unsigned int) self->position);
@@ -165,7 +184,7 @@ int main(int argc, char *argv[])
 	ctx = philos[0].ctx;
 	
 	printf("Numero de filosofod: %d\n", ctx->number_of_philosofers);
-	for (int index = 0; index < ctx->number_of_philosofers; index++)
+/*	for (int index = 0; index < ctx->number_of_philosofers; index++)
 	{
 		if (pthread_create(&philos[index].task, NULL, &init_routine, (void *)(philos + index)) != 0) {
 			printf("Error\n");
@@ -179,4 +198,6 @@ int main(int argc, char *argv[])
 			return (1);
 		} 	
 	}
+*/
+	philo_free(philos);
 }
