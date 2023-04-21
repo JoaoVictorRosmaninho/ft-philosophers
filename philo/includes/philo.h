@@ -6,23 +6,27 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 21:20:33 by jv                #+#    #+#             */
-/*   Updated: 2023/04/16 12:08:33 by jv               ###   ########.fr       */
+/*   Updated: 2023/04/21 11:31:53 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <pthread.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <pthread.h>
+# include <unistd.h>
+# include <sys/time.h>
 
 typedef enum {
+	BORN,
 	THINK,
 	EATING,
 	SLEEP,
-	TRYING_EAT
+	TRYING_EAT,
+	DIED
 } e_state;
 
 typedef enum {
@@ -40,21 +44,22 @@ typedef enum {
 typedef unsigned char byte;
 
 typedef struct {
-	int number_of_philosofers;
-	int time_to_die;
-	int time_to_eat;
-	int time_to_sleep;
-	int must_eat;
+	unsigned int number_of_philosofers;
+	unsigned int time_to_die;
+	unsigned int time_to_eat;
+	unsigned int time_to_sleep;
+	unsigned int must_eat;
+	byte	all_alive;
 	pthread_mutex_t *forks;
 } t_philo_ctx;
 
 typedef struct {
-	int time_until_die;
-	int times_have_eat;
-	e_state state;
-	int position;
-	pthread_t task;
-	t_philo_ctx *ctx;
+	unsigned int	time_until_die;
+	unsigned int	times_have_eat;
+	t_philo_ctx		*ctx;
+	pthread_t		task;
+	e_state 		state;
+	byte			position;
 } t_philo;
 
 /*  utils */
