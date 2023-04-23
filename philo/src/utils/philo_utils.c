@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 22:56:45 by jv                #+#    #+#             */
-/*   Updated: 2023/04/23 16:22:46 by jv               ###   ########.fr       */
+/*   Updated: 2023/04/23 18:19:52 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ static t_philo_ctx	*build_context(char argc, char **argv)
 	ctx = (t_philo_ctx *) ft_calloc(1, sizeof(t_philo_ctx));
 	if (!ctx)
 		return (NULL);
-	ctx->number_of_philosofers = (byte) atoi(argv[1]);
-	ctx->time_to_die = atoi(argv[2]);
-	ctx->time_to_eat = atoi(argv[3]);
-	ctx->time_to_sleep = atoi(argv[4]);
+	ctx->number_of_philosofers = (byte) ft_atoi(argv[1]);
+	ctx->time_to_die = ft_atoi(argv[2]);
+	ctx->time_to_eat = ft_atoi(argv[3]);
+	ctx->time_to_sleep = ft_atoi(argv[4]);
 	ctx->all_alive = 1;
 	if (argc > 5)
-		ctx->must_eat = atoi(argv[5]);
+		ctx->must_eat = ft_atoi(argv[5]);
 	else
 		ctx->must_eat = 0;
 	ctx->forks = (pthread_mutex_t *)

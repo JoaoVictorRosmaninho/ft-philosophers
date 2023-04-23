@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 21:20:33 by jv                #+#    #+#             */
-/*   Updated: 2023/04/23 18:13:38 by jv               ###   ########.fr       */
+/*   Updated: 2023/04/23 18:19:32 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,5 @@ byte		show_message_and_die(const char *msg, t_philo *philo);
 /*		string 		*/
 size_t	ft_strlen(const char *S);
 char	*ft_itoa(long int n);
+int		ft_atoi(const char *str);
 #endif

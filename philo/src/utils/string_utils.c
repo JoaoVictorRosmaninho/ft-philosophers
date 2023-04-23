@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 18:11:11 by jv                #+#    #+#             */
-/*   Updated: 2023/04/23 18:17:32 by jv               ###   ########.fr       */
+/*   Updated: 2023/04/23 18:21:34 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,32 @@ char	*ft_itoa(long int n)
 	convert(n, number, 0);
 	ft_rev(number, ft_strlen(number) - 1);
 	return (number);
+}
+
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	sign;
+	int	n;
+
+	if (!str)
+		return (0);
+	i = 0;
+	sign = 1;
+	n = 0;
+	while (str[i] == ' ' && str[i])
+		i++;
+	if (str[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	else if (str[i] == '+')
+		i++;
+	while ((str[i] >= '0' && str[i] <= '9') && str[i])
+	{
+		n = n * 10 + (str[i] - '0');
+		i++;
+	}
+	return (n * sign);
 }

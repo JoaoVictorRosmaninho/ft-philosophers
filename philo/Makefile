@@ -29,10 +29,11 @@ $(OBJ_DIRS)/%.o: %.c
 	$(CC) $(CFLAGS) $< -o $@
 
 clean:
-	rm -rf OBJ_DIRS
+	rm -rf $(OBJ)
 
 fclean: clean
 	rm $(NAME)
+	rm -rf ./$(OBJ_DIRS)
 
 re: fclean all
 
