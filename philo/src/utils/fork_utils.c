@@ -6,19 +6,19 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 23:07:00 by jv                #+#    #+#             */
-/*   Updated: 2023/04/23 16:38:13 by jv               ###   ########.fr       */
+/*   Updated: 2023/04/23 18:28:58 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-static byte	philo_get_left_fork(t_philo *self)
+static t_byte	philo_get_left_fork(t_philo *self)
 {
 	return ((self->position - 1 + self->ctx->number_of_philosofers)
 		% self->ctx->number_of_philosofers);
 }
 
-static byte	philo_get_right_fork(t_philo *self)
+static t_byte	philo_get_right_fork(t_philo *self)
 {
 	return ((self->position) % self->ctx->number_of_philosofers);
 }

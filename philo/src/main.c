@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 22:18:36 by jv                #+#    #+#             */
-/*   Updated: 2023/04/23 15:14:21 by jv               ###   ########.fr       */
+/*   Updated: 2023/04/23 18:28:58 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	create_threads(t_philo *philos)
 {
-	byte	index;
+	t_byte	index;
 
 	index = 0;
 	while (index < philos[0].ctx->number_of_philosofers)
@@ -29,7 +29,7 @@ static int	create_threads(t_philo *philos)
 
 static int	join_threads(t_philo *philos)
 {
-	byte	index;
+	t_byte	index;
 
 	index = 0;
 	while (index < philos[0].ctx->number_of_philosofers)
@@ -41,7 +41,7 @@ static int	join_threads(t_philo *philos)
 	return (0);
 }
 
-static byte	philo_one_philo(t_philo *array_of_philos)
+static t_byte	philo_one_philo(t_philo *array_of_philos)
 {
 	time_t	time;
 
@@ -59,7 +59,7 @@ static byte	philo_one_philo(t_philo *array_of_philos)
 int	main(int argc, char *argv[])
 {
 	t_philo		*philos;
-	byte		index;
+	t_byte		index;
 
 	if (argc < 5 || argc > 6)
 		return (-1);

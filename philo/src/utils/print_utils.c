@@ -6,20 +6,20 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 23:22:51 by jv                #+#    #+#             */
-/*   Updated: 2023/04/23 18:16:32 by jv               ###   ########.fr       */
+/*   Updated: 2023/04/23 18:28:58 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-byte	show_message_and_die(const char *msg, t_philo *philo)
+t_byte	show_message_and_die(const char *msg, t_philo *philo)
 {
 	printf("%s\n", msg);
 	philo_free(philo);
 	return (-1);
 }
 
-void	ft_puts(long int time, byte position, char *action, t_philo *self)
+void	ft_puts(long int time, t_byte position, char *action, t_philo *self)
 {
 	char	*t;
 	char	*pos;
@@ -39,7 +39,7 @@ void	ft_puts(long int time, byte position, char *action, t_philo *self)
 	pthread_mutex_unlock(&self->ctx->can_print);
 }
 
-void	ft_puts_fork(long int time, byte position, char *action, t_philo *self)
+void	ft_puts_fork(long int time, t_byte position, char *action, t_philo *self)
 {
 	char	*t;
 	char	*pos;

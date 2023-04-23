@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 21:34:29 by jv                #+#    #+#             */
-/*   Updated: 2023/04/23 14:56:04 by jv               ###   ########.fr       */
+/*   Updated: 2023/04/23 18:28:58 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	*ft_calloc(size_t COUNT, size_t ELTSIZE)
 void	philo_free(t_philo *philos)
 {
 	t_philo_ctx	*ctx;
-	byte		index;
-	byte		size;
+	t_byte		index;
+	t_byte		size;
 
 	if (philos)
 	{

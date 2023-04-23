@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 22:56:45 by jv                #+#    #+#             */
-/*   Updated: 2023/04/23 18:19:52 by jv               ###   ########.fr       */
+/*   Updated: 2023/04/23 18:28:58 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_philo_ctx	*build_context(char argc, char **argv)
 	ctx = (t_philo_ctx *) ft_calloc(1, sizeof(t_philo_ctx));
 	if (!ctx)
 		return (NULL);
-	ctx->number_of_philosofers = (byte) ft_atoi(argv[1]);
+	ctx->number_of_philosofers = (t_byte) ft_atoi(argv[1]);
 	ctx->time_to_die = ft_atoi(argv[2]);
 	ctx->time_to_eat = ft_atoi(argv[3]);
 	ctx->time_to_sleep = ft_atoi(argv[4]);
@@ -42,7 +42,7 @@ t_philo	*build_philos(int argc, char *argv[])
 {
 	t_philo_ctx	*ctx;
 	t_philo		*philos;
-	byte		i;
+	t_byte		i;
 
 	ctx = build_context(argc, argv);
 	philos = (t_philo *) ft_calloc(ctx->number_of_philosofers, sizeof(t_philo));
