@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 21:34:29 by jv                #+#    #+#             */
-/*   Updated: 2023/04/22 22:55:05 by jv               ###   ########.fr       */
+/*   Updated: 2023/04/23 14:56:04 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,17 @@ void	*ft_calloc(size_t COUNT, size_t ELTSIZE)
 	return (ptr);
 }
 
-void philo_free(t_philo *philos)
+void	philo_free(t_philo *philos)
 {
-	byte	index;
-	byte	size;
-	t_philo_ctx *ctx;
+	t_philo_ctx	*ctx;
+	byte		index;
+	byte		size;
 
 	if (philos)
 	{
-		index	= 0;
-		ctx		= philos[0].ctx;
-		size	= ctx->number_of_philosofers;
-		
+		index = 0;
+		ctx = philos[0].ctx;
+		size = ctx->number_of_philosofers;
 		while (index < size)
 		{
 			pthread_mutex_destroy(ctx->forks + index);
@@ -42,6 +41,6 @@ void philo_free(t_philo *philos)
 		}
 		free(ctx->forks);
 		free(ctx);
-		//free(philos);
+		free(philos);
 	}
 }

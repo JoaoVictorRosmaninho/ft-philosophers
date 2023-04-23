@@ -10,7 +10,8 @@ SRC		=	src/main.c \
 			src/utils/memory_utils.c \
 			src/utils/philo_utils.c \
 			src/utils/print_utils.c \
-			src/utils/time_utils.c
+			src/utils/time_utils.c \
+			src/utils/string_utils.c
 
 OBJ_DIRS	=	dist
 
