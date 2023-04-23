@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 21:20:33 by jv                #+#    #+#             */
-/*   Updated: 2023/04/21 11:31:53 by jv               ###   ########.fr       */
+/*   Updated: 2023/04/23 10:29:00 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct {
 } t_philo_ctx;
 
 typedef struct {
-	unsigned int	time_until_die;
+	int	time_until_die;
 	unsigned int	times_have_eat;
 	t_philo_ctx		*ctx;
 	pthread_t		task;
@@ -64,5 +64,14 @@ typedef struct {
 
 /*  utils */
 void	*ft_calloc(size_t COUNT, size_t ELTSIZE);
-
+void	*init_routine(void *self);
+void	philo_free(t_philo *philos);
+void	philo_put_forks(t_philo *self);
+void	philo_print_state(t_philo *self, time_t time);
+t_philo *build_philos(int argc, char *argv[]);
+time_t	philo_get_current_time(void);
+time_t	philo_get_forks(t_philo *self);
+unsigned int time_ms_to_mc(unsigned int time_in_ms);
+byte	philo_one_philo(t_philo *array_of_philos);
+byte	show_message_and_die(const char *msg, t_philo *philo);
 #endif
