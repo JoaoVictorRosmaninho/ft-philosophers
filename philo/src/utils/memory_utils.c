@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 21:34:29 by jv                #+#    #+#             */
-/*   Updated: 2023/04/23 18:28:58 by jv               ###   ########.fr       */
+/*   Updated: 2023/04/25 22:39:20 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	philo_free(t_philo *philos)
 		size = ctx->number_of_philosofers;
 		while (index < size)
 		{
-			pthread_mutex_destroy(ctx->forks + index);
+			pthread_mutex_destroy(&ctx->forks[index].fork);
 			index++;
 		}
 		free(ctx->forks);

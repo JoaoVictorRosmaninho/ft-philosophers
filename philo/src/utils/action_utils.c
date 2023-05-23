@@ -6,7 +6,7 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 23:20:13 by jv                #+#    #+#             */
-/*   Updated: 2023/04/23 14:22:19 by jv               ###   ########.fr       */
+/*   Updated: 2023/05/22 23:00:24 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,10 @@ static void	philo_eat(t_philo *self)
 	else
 	{
 		self->state = EATING;
-		if (usleep(time_ms_to_mc(self->ctx->time_to_eat)) != 0)
-			printf("Error no usleep \n");
-		philo_put_forks(self);
+		ft_mstime(self->ctx->time_to_eat);
 		self->time_until_die = self->ctx->time_to_die;
 		self->times_have_eat++;
+		philo_put_forks(self);
 	}
 	philo_print_state(self, 0);
 }
@@ -49,8 +48,7 @@ static void	philo_sleep(t_philo *self)
 		return ;
 	self->state = SLEEP;
 	philo_print_state(self, 0);
-	if (usleep(time_ms_to_mc(self->ctx->time_to_sleep)) != 0)
-		printf("Error no usleep \n");
+	ft_mstime(self->ctx->time_to_sleep);
 	self->time_until_die -= self->ctx->time_to_sleep;
 	if (self->time_until_die <= 0)
 	{

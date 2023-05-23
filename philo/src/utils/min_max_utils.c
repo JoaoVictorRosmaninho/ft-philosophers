@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time_utils.c                                       :+:      :+:    :+:   */
+/*   min_max_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/22 22:55:44 by jv                #+#    #+#             */
-/*   Updated: 2023/05/21 11:27:44 by jv               ###   ########.fr       */
+/*   Created: 2023/05/09 20:56:53 by jv                #+#    #+#             */
+/*   Updated: 2023/05/09 22:32:53 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-time_t	philo_get_current_time(void)
+int min(int a, int b)
 {
-	struct timeval	time;
-
-	if (gettimeofday(&time, NULL))
-	{
-		return (0);
-	}
-	return ((time.tv_sec * (time_t)1000) + (time.tv_usec / 1000));
+	if (a < b)
+		return (a);
+	return (b);
 }
 
-unsigned int	time_ms_to_mc(time_t time_in_ms)
+int	max(int a, int b)
 {
-	return (time_in_ms * 1000);
-}
-
-void	ft_mstime(time_t time)
-{
-	time_t start;
-
-	start = philo_get_current_time();
-
-	
-	while (time > (philo_get_current_time() - start))
-		usleep(time_ms_to_mc(DELAY));
+	if (a > b)
+		return (a);
+	return (b);
 }

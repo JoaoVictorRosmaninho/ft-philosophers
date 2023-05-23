@@ -6,25 +6,18 @@
 /*   By: jv <jv@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 23:22:51 by jv                #+#    #+#             */
-/*   Updated: 2023/04/23 18:28:58 by jv               ###   ########.fr       */
+/*   Updated: 2023/05/21 11:47:35 by jv               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
-
-t_byte	show_message_and_die(const char *msg, t_philo *philo)
-{
-	printf("%s\n", msg);
-	philo_free(philo);
-	return (-1);
-}
 
 void	ft_puts(long int time, t_byte position, char *action, t_philo *self)
 {
 	char	*t;
 	char	*pos;
 
-	t = ft_itoa(time);
+	t = ft_itoa(time - self->ctx->start_time);
 	pos = ft_itoa((long int) position);
 	pthread_mutex_lock(&self->ctx->can_print);
 	write(1, t, ft_strlen(t));
@@ -44,7 +37,7 @@ void	ft_puts_fork(long int time, t_byte position, char *action, t_philo *self)
 	char	*t;
 	char	*pos;
 
-	t = ft_itoa(time);
+	t = ft_itoa(time - self->ctx->start_time);
 	pos = ft_itoa((long int) position);
 	pthread_mutex_lock(&self->ctx->can_print);
 	write(1, t, ft_strlen(t));
