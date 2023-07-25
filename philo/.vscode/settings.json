@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.slim": "html",
+        "philosophers.h": "c"
+    }
+}
