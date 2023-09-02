@@ -36,7 +36,7 @@ static int	ft_atoi(const char *str)
 
 e_bool ft_parse_cmd_line(int argc, char *argv[], t_params *params)
 {
-    if (argc < 4 || argc > 5)
+    if (argc < 5 || argc > 6)
         return (FALSE);
 
     params->number_of_philosofers = (unsigned int) ft_atoi(argv[1]);
@@ -46,7 +46,7 @@ e_bool ft_parse_cmd_line(int argc, char *argv[], t_params *params)
     if (argc > 4) 
         params->number_of_time_must_eat = ft_atoi(argv[5]);
     else
-        params->number_of_time_must_eat = 0;
+        params->number_of_time_must_eat = -1;
     return (TRUE);
 }
 

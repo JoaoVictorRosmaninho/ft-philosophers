@@ -1,8 +1,8 @@
 NAME    := philo
 CC	    := clang
-FLAGS   := -Wall -Wextra -Werror
-LDFLAGS := -lpthread
-SRCS 	:= src/main.c src/utils/utils.c src/utils/display_utils.c
+FLAGS   := -g
+TFLAGS	:= -lpthread -fsanitize=thread
+SRCS 	:= src/main.c src/utils/cmd_line_utils.c src/utils/display_utils.c src/utils/build_utils.c src/utils/time_utils.c src/philosopher/philosopher.c src/monitor/monitor.c
 OBJ_DIR	:=	obj
 OBJS	:= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
@@ -11,7 +11,7 @@ OBJS	:= $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) $(FLAGS)  -o $@
+	$(CC) $(TFLAGS) $(OBJS) $(FLAGS)  -o $@
 
 $(OBJ_DIR)/%.o: %.c  $(OBJ_DIR)
 	$(CC) $(FLAGS) -c $< -o $@
@@ -20,6 +20,8 @@ $(OBJ_DIR):
 	@mkdir $@
 	@mkdir $@/src
 	@mkdir $@/src/utils
+	@mkdir $@/src/philosopher
+	@mkdir $@/src/monitor
 
 clean:
 	@rm $(NAME)
